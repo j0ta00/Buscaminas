@@ -10,7 +10,7 @@ public class Main {
 
 	public static void main(String[] args){
 		
-		Tablero ej1 = new Tablero(5, 5, 3);
+		Tablero ej1 = new Tablero(10, 10, 30);
 		ej1.imprimirTablero();
 		
 	}

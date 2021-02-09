@@ -2,7 +2,7 @@ package casilla;
 /*
  * Nombre de la classe: Casilla
  * 
- * Propiedades básicas:
+ * Propiedades basicas:
  * Boolean descubierta consultable y modificable
  * Int contenido consultable y no modificable
  * boolean marcada consultable y modificable
@@ -16,7 +16,7 @@ package casilla;
  * public boolean isMarcada()
  * public void setDescubierta(boolean descubierta) 
  * public void setMarcada(boolean marcada) 
- * Métodos adicionales/añadidos:Ninguno
+ * Metodos adicionales/aÃ±adidos:Ninguno
  * 
  * */
 public class Casilla{
@@ -24,20 +24,20 @@ public class Casilla{
 	boolean descubierta;
 	boolean marcada;
 	int contenido;
-	//Métodos constructores
+	//Metodos constructores
 	//Constructor por defecto
 	public Casilla(){
 		this.descubierta = false;
 		this.marcada = false;
 		this.contenido = 0;
 	}
-	//Constructor por parámetros
+	//Constructor por parametros
 	public Casilla(int contenido){
 		this.descubierta = false;
 		this.marcada = false;
 		this.contenido = contenido;
 	}
-	//Métodos accesores
+	//Metodos accesores
 	//Getters
 	public boolean isDescubierta(){
 		return descubierta;

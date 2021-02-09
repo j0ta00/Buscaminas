@@ -5,7 +5,7 @@ import casilla.Casilla;
 /*
  * Nombre de la clase:Tablero
  * 
- * Propiedades b·sicas:
+ * Propiedades basicas:
  * int filas :consultable y no modificable
  * int columnas:consultable y no modificable
  * int bombas:consultable y no modificable
@@ -22,22 +22,26 @@ import casilla.Casilla;
  * 
  * */
 public class Tablero {
+
 	//Atributos
 	int filas;
 	int columnas;
 	int bombas;
 	Casilla[][] casillas;
-	//MÈtodos constructores
-	//Constructor por par·metros
+
+	//Metodos constructores
+	//Constructor por parametros
 	public Tablero(int filas, int columnas, int bombas){
 		this.filas = filas;
 		this.columnas = columnas;
+		if (bombas>=filas*columnas)
+			bombas=(filas*columnas)-1;//Se reasignan las bombas a un valor de todas las casillas existentes menos una
 		this.bombas = bombas;
 		this.casillas = new Casilla[filas][columnas];
 		rellenarTablero();
 	}
 	
-	//MÈtodos accesores
+	//Metodos accesores
 	//Gettters
 	public int getFilas() {
 		return filas;
@@ -61,22 +65,25 @@ public class Tablero {
 	public void setCasillaDescubierta(boolean descubierta, int fila, int columna){
 		this.casillas[fila][columna].setDescubierta(descubierta);
 	}
-	public void setMarcada(boolean marcada, int fila, int columna){
+	public void setCasillaMarcada(boolean marcada, int fila, int columna){
 		this.casillas[fila][columna].setDescubierta(marcada);
 	}
-	
-	
-	
+
+	//Metodos a√±adidos
+	/* Coloca tantas bombas como se hayan designado en el atributo de clase bombas y rellena el resto de celdas con los
+		valores correspondientes a un tablero de buscaminas*/
 	public void rellenarTablero() {
 		int bombascreadas=0, fila, columna, numeroBombas;
+
 		//Coloca bombas aleatorias
-		while(bombascreadas<this.bombas) {
+		while(bombascreadas<=this.bombas) {
 			fila = (int)(Math.random()*this.filas);
 			columna = (int)(Math.random()*this.columnas);
 			if(casillas[fila][columna]==null)
 				casillas[fila][columna]= new Casilla(-1);
 			bombascreadas++;
 		}
+
 		//Relenar resto de celdas
 		for(int i=0; i<this.filas; i++) {
 			for (int j=0; j<this.columnas; j++) {
@@ -87,7 +94,8 @@ public class Tablero {
 			}
 		}
 	}
-	
+
+	//Comprueba las bombas que rodean a una casilla dada y devuelve este numero
 	public int comprobarBombasCercanas(int fila, int columna) {
 		int bombasCercanas=0;
 		
@@ -141,7 +149,10 @@ public class Tablero {
 	public void imprimirTablero() {
 		char imprimible;
 		for(int i=0; i<this.filas; i++) {
-			System.out.println("__________________________________________");
+			for(int j=0;  j<this.columnas; j++) {
+				System.out.print("----");
+			}
+			System.out.println("-");
 			for (int j=0; j<this.columnas; j++) {
 				if(isCasillaDescubierta(i, j)) {
 					if(getCasillaContenido(i,j)==0)
@@ -159,8 +170,15 @@ public class Tablero {
 			}
 			System.out.println("|");
 		}
-		System.out.println("__________________________________________");
+		for(int j=0;  j<this.columnas; j++) {
+			System.out.print("----");
+		}
+		System.out.println("-");
 	}
-	
+
+	//Alterna el estado de marcada de la casilla designada por fils y columna dados (marcada <--> desmaracada)
+	public void marcarCasilla(int fila, int columna){
+		setCasillaMarcada(!isCasillaMarcada(fila,columna), fila, columna);
+	}
 	
 }
