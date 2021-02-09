@@ -76,12 +76,13 @@ public class Tablero {
 		int bombascreadas=0, fila, columna, numeroBombas;
 
 		//Coloca bombas aleatorias
-		while(bombascreadas<=this.bombas) {
+		while(bombascreadas<this.bombas) {
 			fila = (int)(Math.random()*this.filas);
 			columna = (int)(Math.random()*this.columnas);
-			if(casillas[fila][columna]==null)
+			if(casillas[fila][columna]==null){
 				casillas[fila][columna]= new Casilla(-1);
-			bombascreadas++;
+				bombascreadas++;
+			}
 		}
 
 		//Relenar resto de celdas
@@ -150,35 +151,95 @@ public class Tablero {
 		char imprimible;
 		for(int i=0; i<this.filas; i++) {
 			for(int j=0;  j<this.columnas; j++) {
-				System.out.print("----");
+				System.out.print("+---");
 			}
-			System.out.println("-");
+			System.out.println("+");
 			for (int j=0; j<this.columnas; j++) {
 				if(isCasillaDescubierta(i, j)) {
-					if(getCasillaContenido(i,j)==0)
-						imprimible=' ';
-					else if(getCasillaContenido(i,j)<0)
+					if(getCasillaContenido(i,j)<0)
 						imprimible='*';
-					else
-						imprimible= (char) getCasillaContenido(i,j);
+					else if(getCasillaContenido(i,j)==0)
+						imprimible=' ';
+					else{
+						;
+						imprimible= (char) (getCasillaContenido(i,j)+'0');
+					}
 				}else if(isCasillaMarcada(i, j)){
 					imprimible='P';
 				}else {
-					imprimible=' ';
+					imprimible='•';
 				}
 				System.out.print("| "+imprimible+" ");
 			}
 			System.out.println("|");
 		}
 		for(int j=0;  j<this.columnas; j++) {
-			System.out.print("----");
+			System.out.print("+---");
 		}
-		System.out.println("-");
+		System.out.println("+");
 	}
 
 	//Alterna el estado de marcada de la casilla designada por fils y columna dados (marcada <--> desmaracada)
 	public void marcarCasilla(int fila, int columna){
 		setCasillaMarcada(!isCasillaMarcada(fila,columna), fila, columna);
+	}
+
+	//Marca la casilla como seleccionada, en caso de ser una bomba devuelve true y en caso contrario false. Este metodo marca
+	// como descubiertas todas las casillas que le rodean en caso de encontrar un cero y lo hace para todas las siguientes
+	// casillas con cero que encuentre.
+	public boolean seleccionarCasilla(int fila, int columna){
+		boolean perder = false;
+		if(!isCasillaDescubierta(fila, columna)) {//Equivale al resto de !isCasillaDescubierta internos
+			setCasillaDescubierta(true, fila, columna);
+
+			if (getCasillaContenido(fila, columna) == -1)
+				perder = true;
+			else if (getCasillaContenido(fila, columna) == 0) {
+				if (fila - 1 >= 0)// && !isCasillaDescubierta(fila - 1, columna))
+					seleccionarCasilla(fila - 1, columna);
+
+				if (fila - 1 >= 0 && columna - 1 >= 0 )//&& !isCasillaDescubierta(fila - 1, columna - 1))
+					seleccionarCasilla(fila - 1, columna - 1);
+
+				if (columna - 1 >= 0 )//&& !isCasillaDescubierta(fila, columna - 1))
+					seleccionarCasilla(fila, columna - 1);
+
+				if (columna - 1 >= 0 && fila + 1 < this.filas)// && !isCasillaDescubierta(fila + 1, columna - 1))
+					seleccionarCasilla(fila + 1, columna - 1);
+
+				if (fila + 1 < this.filas)// && !isCasillaDescubierta(fila + 1, columna))
+					seleccionarCasilla(fila + 1, columna);
+
+				if (columna + 1 < this.columnas && fila + 1 < this.filas)// && !isCasillaDescubierta(fila + 1, columna + 1))
+					seleccionarCasilla(fila + 1, columna + 1);
+
+				if (columna + 1 < this.columnas)// && !isCasillaDescubierta(fila, columna + 1))
+					seleccionarCasilla(fila, columna + 1);
+
+				if (fila - 1 >= 0 && columna + 1 < this.columnas)// && !isCasillaDescubierta(fila - 1, columna + 1))
+					seleccionarCasilla(fila - 1, columna + 1);
+			}
+		}
+
+		return perder;
+
+	}
+
+	//Comprueba si las casillas que quedan sin descubrir equivalen a las bombas que hay en el tablero
+	public boolean comprobarVictoria (){
+		int contadorCasillas=0;
+		boolean ganador = true;
+
+		for(int i=0; i<filas && ganador; i++){
+			for (int j=0; j<columnas && ganador; j++){
+				if(!isCasillaDescubierta(i,j)) {
+					contadorCasillas++;
+					if(contadorCasillas>bombas)
+						ganador=false;
+				}
+			}
+		}
+		return ganador;
 	}
 	
 }
