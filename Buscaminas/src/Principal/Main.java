@@ -1,5 +1,6 @@
 package Principal;
 
+import gestora.Gestora;
 import tablero.Tablero;
 
 /*
@@ -9,10 +10,8 @@ import tablero.Tablero;
 public class Main {
 
 	public static void main(String[] args){
-		
-		Tablero ej1 = new Tablero(5, 5, 3);
-		ej1.imprimirTablero();
-		
+		Gestora.partida();
+
 	}
 
 }
