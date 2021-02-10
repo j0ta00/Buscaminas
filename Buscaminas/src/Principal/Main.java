@@ -1,5 +1,6 @@
 package Principal;
 
+import gestora.Gestora;
 import tablero.Tablero;
 
 /*
@@ -9,7 +10,7 @@ import tablero.Tablero;
 public class Main {
 
 	public static void main(String[] args){
-		
+		Gestora.partida();
 
 	}
 

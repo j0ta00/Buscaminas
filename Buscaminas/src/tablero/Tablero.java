@@ -167,7 +167,7 @@ public class Tablero {
 				}else if(isCasillaMarcada(i, j)){
 					imprimible='P';
 				}else {
-					imprimible='â€¢';
+					imprimible='•';
 				}
 				System.out.print("| "+imprimible+" ");
 			}
@@ -228,14 +228,13 @@ public class Tablero {
 	//Comprueba si las casillas que quedan sin descubrir equivalen a las bombas que hay en el tablero
 	public boolean comprobarVictoria (){
 		int contadorCasillas=0;
-		boolean ganador = true;
-
+		boolean ganador=false;
 		for(int i=0; i<filas && ganador; i++){
 			for (int j=0; j<columnas && ganador; j++){
 				if(!isCasillaDescubierta(i,j)) {
 					contadorCasillas++;
-					if(contadorCasillas>bombas)
-						ganador=false;
+					if(contadorCasillas==bombas)
+						ganador=true;
 				}
 			}
 		}
