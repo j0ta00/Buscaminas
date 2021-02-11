@@ -167,7 +167,7 @@ public class Tablero {
 				}else if(isCasillaMarcada(i, j)){
 					imprimible='P';
 				}else {
-					imprimible='â€¢';
+					imprimible='•';
 				}
 				System.out.print("| "+imprimible+" ");
 			}
