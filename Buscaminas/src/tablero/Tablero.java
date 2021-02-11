@@ -56,20 +56,20 @@ public class Tablero {
 	public boolean isCasillaDescubierta(int fila, int columna){
 		return this.casillas[fila][columna].isDescubierta();
 	}
-	public int getCasillaContenido(int fila, int columna){
-		return this.casillas[fila][columna].getContenido();
-	}
 	public boolean isCasillaMarcada(int fila, int columna){
 		return this.casillas[fila][columna].isMarcada();
+	}
+	public int getCasillaContenido(int fila, int columna){
+		return this.casillas[fila][columna].getContenido();
 	}
 	public void setCasillaDescubierta(boolean descubierta, int fila, int columna){
 		this.casillas[fila][columna].setDescubierta(descubierta);
 	}
 	public void setCasillaMarcada(boolean marcada, int fila, int columna){
-		this.casillas[fila][columna].setDescubierta(marcada);
+		this.casillas[fila][columna].setMarcada(marcada);
 	}
 
-	//Metodos añadidos
+	//Metodos aÃ±adidos
 	/* Coloca tantas bombas como se hayan designado en el atributo de clase bombas y rellena el resto de celdas con los
 		valores correspondientes a un tablero de buscaminas*/
 	public void rellenarTablero() {
@@ -228,13 +228,14 @@ public class Tablero {
 	//Comprueba si las casillas que quedan sin descubrir equivalen a las bombas que hay en el tablero
 	public boolean comprobarVictoria (){
 		int contadorCasillas=0;
-		boolean ganador=false;
+		boolean ganador = true;
+
 		for(int i=0; i<filas && ganador; i++){
 			for (int j=0; j<columnas && ganador; j++){
 				if(!isCasillaDescubierta(i,j)) {
 					contadorCasillas++;
-					if(contadorCasillas==bombas)
-						ganador=true;
+					if(contadorCasillas>bombas)
+						ganador=false;
 				}
 			}
 		}
