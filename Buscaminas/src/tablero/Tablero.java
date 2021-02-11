@@ -56,17 +56,17 @@ public class Tablero {
 	public boolean isCasillaDescubierta(int fila, int columna){
 		return this.casillas[fila][columna].isDescubierta();
 	}
-	public int getCasillaContenido(int fila, int columna){
-		return this.casillas[fila][columna].getContenido();
-	}
 	public boolean isCasillaMarcada(int fila, int columna){
 		return this.casillas[fila][columna].isMarcada();
+	}
+	public int getCasillaContenido(int fila, int columna){
+		return this.casillas[fila][columna].getContenido();
 	}
 	public void setCasillaDescubierta(boolean descubierta, int fila, int columna){
 		this.casillas[fila][columna].setDescubierta(descubierta);
 	}
 	public void setCasillaMarcada(boolean marcada, int fila, int columna){
-		this.casillas[fila][columna].setDescubierta(marcada);
+		this.casillas[fila][columna].setMarcada(marcada);
 	}
 
 	//Metodos añadidos
