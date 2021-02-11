@@ -149,30 +149,46 @@ public class Tablero {
 	
 	public void imprimirTablero() {
 		char imprimible;
+		//Imprime los numeros para cada columna
+		System.out.print("    ");
+		for(int i=0;  i<this.columnas; i++) {
+			if(i+1>9)
+				System.out.print(" "+ (i+1) +" ");
+			else
+				System.out.print("  " + (i+1) + " ");
+		}
+		System.out.println();
+		//Repite para cada fila
 		for(int i=0; i<this.filas; i++) {
-			for(int j=0;  j<this.columnas; j++) {
+			//Imprime linea entre filas tantas veces como columnas haya
+			System.out.print("    ");
+			for(int j=0;  j<this.columnas; j++)
 				System.out.print("+---");
-			}
 			System.out.println("+");
+			//Imprime numero de fila
+			if(i+1>9)
+				System.out.print(" "+ (i+1) +" ");
+			else
+				System.out.print("  " + (i+1) + " ");
+			//Imprime las casillas de una fila
 			for (int j=0; j<this.columnas; j++) {
 				if(isCasillaDescubierta(i, j)) {
 					if(getCasillaContenido(i,j)<0)
 						imprimible='*';
 					else if(getCasillaContenido(i,j)==0)
 						imprimible=' ';
-					else{
-						;
+					else
 						imprimible= (char) (getCasillaContenido(i,j)+'0');
-					}
 				}else if(isCasillaMarcada(i, j)){
 					imprimible='P';
 				}else {
-					imprimible='•';
+					imprimible='â€¢';
 				}
 				System.out.print("| "+imprimible+" ");
 			}
 			System.out.println("|");
 		}
+		System.out.print("    ");
 		for(int j=0;  j<this.columnas; j++) {
 			System.out.print("+---");
 		}
@@ -225,7 +241,8 @@ public class Tablero {
 
 	}
 
-	//Comprueba si las casillas que quedan sin descubrir equivalen a las bombas que hay en el tablero
+	//Comprueba si las casillas que quedan sin descubrir equivalen a las bombas que hay en el tablero, si hay mas que el
+		//numero de bombas, no hay ganado
 	public boolean comprobarVictoria (){
 		int contadorCasillas=0;
 		boolean ganador = true;
