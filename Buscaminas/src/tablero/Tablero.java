@@ -69,7 +69,7 @@ public class Tablero {
 		this.casillas[fila][columna].setDescubierta(marcada);
 	}
 
-	//Metodos añadidos
+	//Metodos aÃ±adidos
 	/* Coloca tantas bombas como se hayan designado en el atributo de clase bombas y rellena el resto de celdas con los
 		valores correspondientes a un tablero de buscaminas*/
 	public void rellenarTablero() {
@@ -167,7 +167,7 @@ public class Tablero {
 				}else if(isCasillaMarcada(i, j)){
 					imprimible='P';
 				}else {
-					imprimible='�';
+					imprimible='•';
 				}
 				System.out.print("| "+imprimible+" ");
 			}
@@ -228,13 +228,14 @@ public class Tablero {
 	//Comprueba si las casillas que quedan sin descubrir equivalen a las bombas que hay en el tablero
 	public boolean comprobarVictoria (){
 		int contadorCasillas=0;
-		boolean ganador=false;
+		boolean ganador = true;
+
 		for(int i=0; i<filas && ganador; i++){
 			for (int j=0; j<columnas && ganador; j++){
 				if(!isCasillaDescubierta(i,j)) {
 					contadorCasillas++;
-					if(contadorCasillas==bombas)
-						ganador=true;
+					if(contadorCasillas>bombas)
+						ganador=false;
 				}
 			}
 		}
