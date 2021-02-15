@@ -30,5 +30,6 @@ public class Validaciones {
 	public static boolean validarCaracter(){
 		return teclado.next().toUpperCase().charAt(0)=='M';
 	}
+	public static boolean repetirPartida(){return teclado.next().toUpperCase().charAt(0)=='S';}
 }
 

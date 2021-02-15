@@ -1,7 +1,7 @@
 package menus;
 
 public class Menu{
-	
+
 	public static void presentacion(){
 		System.out.println("Bienvenido al juego del buscaminas, intenta descubrir el tablero al completo sin caer en ninguna mina");
 	}
@@ -42,6 +42,10 @@ public class Menu{
 	public static void imprimirMarcar(){
 		System.out.println("¿Quieres marcar/desmarcar una casilla? introduce M para marcar una");
 		
+	}
+
+	public static void nuevaPartida(){
+		System.out.println("¿Desea jugar otra partida? Introduzca S si desea volver a jugar");
 	}
 
 }

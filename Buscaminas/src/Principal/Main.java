@@ -1,7 +1,8 @@
 package Principal;
 
 import gestora.Gestora;
-import tablero.Tablero;
+import menus.Menu;
+import validaciones.Validaciones;
 
 /*
  * CLASES:Tablero(Casilla[][] casillas),Casilla( boolean estado,int contnido),Main,Gestora,Validaciones
@@ -10,7 +11,20 @@ import tablero.Tablero;
 public class Main {
 
 	public static void main(String[] args){
-		Gestora.partida();
+
+		/*
+		boolean otraPartida = true;
+
+		while (otraPartida) {
+			Gestora.partida();
+			Menu.nuevaPartida();
+			otraPartida = Validaciones.repetirPartida();
+		}*/
+		
+		do{
+			Gestora.partida();
+			Menu.nuevaPartida();
+		}while(Validaciones.repetirPartida());
 
 	}
 
