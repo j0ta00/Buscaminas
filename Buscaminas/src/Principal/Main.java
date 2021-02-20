@@ -4,9 +4,12 @@ import gestora.Gestora;
 import menus.Menu;
 import validaciones.Validaciones;
 
-/*
- * CLASES:Tablero(Casilla[][] casillas),Casilla( boolean estado,int contnido),Main,Gestora,Validaciones
- * 
+/**
+ * <b>CLASE PRINCIPAL</b>
+ * <p>
+ * Se trata de uan clase que solamente contiene el método main que nos perimitirá jugar al juego<br>
+ * del buscaminas
+ * </p>
  * */
 public class Main {
 

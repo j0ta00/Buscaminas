@@ -2,24 +2,57 @@ package tablero;
 
 import casilla.Casilla;
 
-/*
+/**@author <b>josmatoje AND jjmza</b><br> 
  * Nombre de la clase:Tablero
  * 
- * Propiedades basicas:
- * int filas :consultable y no modificable
- * int columnas:consultable y no modificable
- * int bombas:consultable y no modificable
- * Casilla[][] casillas:consultable y no modificable
+ * <table>
+ *	 <tr>
+ *		 <th>Propiedades basicas:</th>
+ * 	</tr>
+ * 	 <tr>
+ *	 	<td> int filas :consultable y no modificable</td>
+ *   </tr>
+ *	 <tr>
+ * 		<td>int columnas:consultable y no modificable</td>
+ * 	 </tr>
+ *	 <tr>
+ * 		<td>int bombas:consultable y no modificable</td>
+ *	 </tr>
+ * 	 <tr>
+ * 		<td>Casilla[][] casillas:consultable y no modificable</td>
+ *	 </tr>
+ * </table>
  * 
- * Propiedades Derivadas:Ninguna
- * Propiedades Compartidas:Ninguna
+ * <b>Propiedaes derivadas:</b> Ninguna<br>
+ * <b>Propiedades Compartidas:</b> Ninguna<br>
  * 
- * Getters
- * public int getFilas()
- * public int getColumnas()
- * public int getBombas()
- * public Casilla[][] getCasillas()
- * 
+ * <table>
+ * 	<tr>
+ * 		<th>Métodos accesores:</th>
+ * 	</tr>
+ * 	<tr>
+ *		 <td> public int getFilas()</td>
+ * 	</tr>
+ * 	<tr> 
+ * 		<td>public int getColumnas()</td>
+ * 	</tr>
+ * 	<tr>
+ * 		<td>public int getBombas()</td>
+ * 	</tr>
+ *  <tr>
+ * 		<td>public Casilla[][] getCasillas()</td>
+ * 	</tr>
+ * <tr>
+ * 		<td>El resto son métodos accesores delegados sobre la clase Casilla</td>
+ * 	</tr>
+ * </table> 
+ * <br><b>Metodos adicionales:</b><br>
+ *-public void rellenarTablero()<br>
+ *-comprobarBombasCercanas(int fila, int columna)<br>
+ *-public void marcarCasilla(int fila, int columna) <br>
+ *-public void marcarCasilla(int fila, int columna) <br>
+ *-public boolean seleccionarCasilla(int fila, int columna) <br>
+ *-public boolean comprobarVictoria () <br>
  * */
 public class Tablero {
 
@@ -40,7 +73,6 @@ public class Tablero {
 		this.casillas = new Casilla[filas][columnas];
 		rellenarTablero();
 	}
-	
 	//Metodos accesores
 	//Gettters
 	public int getFilas() {
@@ -69,12 +101,18 @@ public class Tablero {
 		this.casillas[fila][columna].setMarcada(marcada);
 	}
 
-	//Metodos aÃƒÂ±adidos
-	/* Coloca tantas bombas como se hayan designado en el atributo de clase bombas y rellena el resto de celdas con los
-		valores correspondientes a un tablero de buscaminas*/
-	public void rellenarTablero() {
+	/**
+	 * @author<b>josmatoje AND jjmza</b><br> 
+	 * Cabecera:public void rellenarTablero()<br>
+	 * Proposito: Coloca tantas bombas como se hayan designado en el atributo de clase bombas y rellena<br> 
+	 * el resto de celdas con los valores correspondientes a un tablero de buscaminas<br>
+	 * Precondición:Ninguna<br>
+	 * Postcondición:Ninguna, se trata de un procedimiento que llena el tablero de bombas/minas
+	 * @param Ninguno
+	 * @return Nada
+	 * */
+	public void rellenarTablero(){
 		int bombascreadas=0, fila, columna, numeroBombas;
-
 		//Coloca bombas aleatorias
 		while(bombascreadas<this.bombas) {
 			fila = (int)(Math.random()*this.filas);
@@ -95,9 +133,16 @@ public class Tablero {
 			}
 		}
 	}
-
-	//Comprueba las bombas que rodean a una casilla dada y devuelve este numero
-	public int comprobarBombasCercanas(int fila, int columna) {
+	/**
+	 * @author<b>josmatoje AND jjmza</b><br> 
+	 * Cabecera:public void rellenarTablero()<br>
+	 * Proposito:Comprueba las bombas que rodean a una casilla dada y devuelve este numero<br> 
+	 * Precondición:Ninguna<br>
+	 * Postcondición:Ninguna, se trata de un procedimiento que compruba las bombas cercanas a una casilla
+	 * @param int fila, int columna
+	 * @return int bombasCercanas
+	 * */
+	public int comprobarBombasCercanas(int fila, int columna){
 		int bombasCercanas=0;
 		
 		if(casillas[fila][columna]==null) {
@@ -146,8 +191,16 @@ public class Tablero {
 		
 		return bombasCercanas;
 	}
-	
-	public void imprimirTablero() {
+	/**
+	 * @author<b>josmatoje AND jjmza</b><br> 
+	 * Cabecera:public void imprimirTablero()<br>
+	 * Proposito:Imprime el tablero donde se jugará al buscaminas<br>
+	 * Precondición:Ninguna<br>
+	 * Postcondición:Ninguna, se trata de un procedimiento que imprime el tablero
+	 * @param Ninguno
+	 * @return Nada
+	 * */
+	public void imprimirTablero(){
 		char imprimible;
 		//Imprime los numeros para cada columna
 		System.out.print("    ");
@@ -182,7 +235,7 @@ public class Tablero {
 				}else if(isCasillaMarcada(i, j)){
 					imprimible='P';
 				}else {
-					imprimible='â€¢';
+					imprimible='•';
 				}
 				System.out.print("| "+imprimible+" ");
 			}
@@ -194,15 +247,27 @@ public class Tablero {
 		}
 		System.out.println("+");
 	}
-
-	//Alterna el estado de marcada de la casilla designada por fils y columna dados (marcada <--> desmaracada)
+	/**
+	 * @author<b>josmatoje AND jjmza</b><br> 
+	 * Cabecera:public void marcarCasilla(int fila, int columna)<br>
+	 * Proposito: Alterna el estado de marcada de la casilla designada por fila y columna dados<br> 
+	 * Precondición:Ninguna<br>
+	 * Postcondición:Ninguna, se trata de un procedimiento que marca/desmarca una casilla
+	 * @param int fila, int columna
+	 * @return Nada
+	 * */
 	public void marcarCasilla(int fila, int columna){
 		setCasillaMarcada(!isCasillaMarcada(fila,columna), fila, columna);
 	}
-
-	//Marca la casilla como seleccionada, en caso de ser una bomba devuelve true y en caso contrario false. Este metodo marca
-	// como descubiertas todas las casillas que le rodean en caso de encontrar un cero y lo hace para todas las siguientes
-	// casillas con cero que encuentre.
+	/**
+	 * @author<b>josmatoje AND jjmza</b><br> 
+	 * Cabecera:public boolean seleccionarCasilla(int fila, int columna)<br>
+	 * Proposito: Este método descubre el valor de la casilla marcada y de las de su alrededor<br> 
+	 * Precondición:Ninguna<br>
+	 * Postcondición:Ninguna, se trata de una función recursiva
+	 * @param int fila, int columna
+	 * @return boolean perder
+	 * */
 	public boolean seleccionarCasilla(int fila, int columna){
 		boolean perder = false;
 		if(!isCasillaDescubierta(fila, columna)) {//Equivale al resto de !isCasillaDescubierta internos
@@ -236,17 +301,20 @@ public class Tablero {
 					seleccionarCasilla(fila - 1, columna + 1);
 			}
 		}
-
 		return perder;
-
 	}
-
-	//Comprueba si las casillas que quedan sin descubrir equivalen a las bombas que hay en el tablero, si hay mas que el
-		//numero de bombas, no hay ganado
+	/**
+	 * @author<b>josmatoje AND jjmza</b><br> 
+	 * Cabecera:public boolean seleccionarCasilla(int fila, int columna)<br>
+	 * Proposito: Este método comprueba el resultado de la partida<br> 
+	 * Precondición:Ninguna<br>
+	 * Postcondición:Ninguna, se trata de una función que devuelve un booleano
+	 * @param Nada
+	 * @return boolean ganador
+	 * */
 	public boolean comprobarVictoria (){
 		int contadorCasillas=0;
 		boolean ganador = true;
-
 		for(int i=0; i<filas && ganador; i++){
 			for (int j=0; j<columnas && ganador; j++){
 				if(!isCasillaDescubierta(i,j)) {

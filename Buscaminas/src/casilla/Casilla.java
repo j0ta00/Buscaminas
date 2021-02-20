@@ -1,23 +1,47 @@
 package casilla;
-/*
- * Nombre de la classe: Casilla
+/**
+ * @author <b>josmatoje AND jjmza</b><br> 
+ *<b> Nombre de la clase:</b> Casilla<br> 
  * 
- * Propiedades basicas:
- * Boolean descubierta consultable y modificable
- * Int contenido consultable y no modificable
- * boolean marcada consultable y modificable
+ * <table>
+ *	 <tr>
+ *		 <th>Propiedades basicas:</th>
+ * 	</tr>
+ * 	 <tr>
+ *	 	<td> Boolean descubierta consultable y modificable</td>
+ *   </tr>
+ *	 <tr>
+ * 		<td>Int contenido consultable y no modificable</td>
+ * 	 </tr>
+ *	 <tr>
+ * 		<td>boolean marcada consultable y modificable</td>
+ *	 </tr>
+ * </table>
  * 
- * Propiedaes derivadas: Ninguna
- * Propiedades Compartidas:Ninguna
+ * <b>Propiedaes derivadas:</b> Ninguna<br>
+ * <b>Propiedades Compartidas:</b> Ninguna<br>
  * 
- * Getters y Setters:
- * public boolean isDescubierta() 
- * public int getContenido()
- * public boolean isMarcada()
- * public void setDescubierta(boolean descubierta) 
- * public void setMarcada(boolean marcada) 
- * Metodos adicionales/a√±adidos:Ninguno
- * 
+ * <table>
+ * 	<tr>
+ * 		<th>MÈtodos accesores:</th>
+ * 	</tr>
+ * 	<tr>
+ *		 <td>public boolean isDescubierta()</td>
+ * 	</tr>
+ * 	<tr> 
+ * 		<td>public int getContenido()</td>
+ * 	</tr>
+ * 	<tr>
+ * 		<td>public boolean isMarcada()</td>
+ * 	</tr>
+ * 	<tr>
+ * 		<td>public void setDescubierta(boolean descubierta)</td>
+ * 	</tr>
+ *	 <tr> 
+ * 		<td>public void setMarcada(boolean marcada)</td>
+ * 	</tr>
+ * </table> 
+ * <br><b>Metodos adicionales:</b> Ninguno
  * */
 public class Casilla{
 	//Atributos
